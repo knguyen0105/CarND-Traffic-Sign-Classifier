@@ -13,17 +13,6 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
@@ -45,23 +34,33 @@ signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 
-A bar chart showing the count of each class in the training example is included in the notebook.
+A bar chart showing the count for each class in the training set is included in the notebook.
 
-5 most common signs in the training, more than 1750 examples, are: Speed limit (50km/h) (class id #2), Speed limit (30km/h)  (class id #1), Yield  (class id #13), Priority road  (class id #12), Keep right  (class id #38)
+5 most common signs in the training, more than 1750 examples, are: 
+- Speed limit (50km/h) (class id #2)
+- Speed limit (30km/h)  (class id #1)
+- Yield  (class id #13) 
+- Priority road  (class id #12)
+- Keep right  (class id #38)
 
-5 least common signs in the training data, with less than 250 examples, are:
-
-Speed limit (20km/h) (class id #0), Dangerous curve to the left (class id #19), Pedestrians (class id #27),	Go straight or left (class id #37), End of no passing (class id #41)
+5 least common signs in the training data, with less than 250 examples, are: 
+- Speed limit (20km/h) (class id #0) 
+- Dangerous curve to the left (class id #19) 
+- Pedestrians (class id #27) 
+- Go straight or left (class id #37) 
+- End of no passing (class id #41)
 
 ### Design and Test a Model Architecture
 
-####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
 My preprocessing pipleline is as follow:
 
 1) Oversampling using SMOTE. After this, the number of training examples in each class are equal. 
-2) Convert image to grayscale
+2) Convert image to grayscale.
 3) Normalize pixal using formula (pixel - 128)/128
+
+Step 2) and 3) are implemented inside Lenet(x). 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -90,31 +89,27 @@ My model is LeNet from the lecture with an additioanl Dropout at the last convol
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an AdamOptimizer with batch size 128, 20 epochs, 0.002 learning rate and dropout prob 0.5
+To train the model, I tweak the original hyperparameters a bit. I increase the number of epoch to 20, learning rate to 0.002, and add a dropout prob 0.5
 
-I experimented with higher epoch number, thinking it will increase my result but I couldn't achieve a statistical signficant improvement so I keep it at 20.
+I experimented with higher epoch numbers, thinking it will improve my result but I couldn't achieve a statistical signficant improvement so I keep it at 20.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of 98.6%
-* validation set accuracy of 95.6% 
+* training set accuracy of 98.7%
+* validation set accuracy of 95.3% 
 * test set accuracy of 93.8%
 
-I chose LeNet architecture for the problem because the problem is similar. I belive the model works well because it achieves accuracy > 93% only after 20 epochs. 
+I chose LeNet architecture for the problem because the training examples are similar in nature. The number of classes is in the same order of magnitude. I belive the model works well because it achieves accuracy > 93% only after 20 epochs. 
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
 
 ### Test a Model on New Images
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+I picked 20 images from https://github.com/navoshta/traffic-signs/tree/master/traffic-signs-data/custom
 
+Here are some images from the set
 
 ![alt text](./new_images/example_00001.png)
 ![alt text](./new_images/example_00002.png)
@@ -122,39 +117,20 @@ Here are five German traffic signs that I found on the web:
 ![alt text](./new_images/example_00004.png)
 ![alt text](./new_images/example_00005.png)
 
-The first image might be difficult to classify because ...
+Image #1 might be difficult to classify because the the sign (inside the triangle) is small, making it hard to detect distinct feature even with human eyes.
+
+![alt text](./new_images/example_00011.png)
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
-Here are the results of the prediction:
-
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
-
-
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+My model predicts with 90% accuracy. 2 out of 18 are incorrect. This is comparable with the validation and testing accuracy, taking into account the fact the accuracy can swing significantly in a small sample. Another incorrect classification could bring the accuracy to 83%.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The probabilities are shown in the notebook output. 
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+In #11, the model mistakes a children crossing for a bicycle crossing. When we exam the probability ranking, the order is [Bicycles crossing, Children crossing, Slippery road,Beware of ice/snow,Road narrows on the right]. Not too far from the truth.
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-For the second image ... 
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
