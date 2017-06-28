@@ -101,7 +101,7 @@ My final model results were:
 * validation set accuracy of 95.6% 
 * test set accuracy of 93.8%
 
-I chose LeNet architecture for the problem. 
+I chose LeNet architecture for the problem because the problem is similar. I belive the model works well because it achieves accuracy > 93% only after 20 epochs. 
 
 If a well known architecture was chosen:
 * What architecture was chosen?
@@ -115,8 +115,12 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+
+![alt text](./new_images/example_00001.png)
+![alt text](./new_images/example_00002.png)
+![alt text](./new_images/example_00003.png)
+![alt text](./new_images/example_00004.png)
+![alt text](./new_images/example_00005.png)
 
 The first image might be difficult to classify because ...
 
