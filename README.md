@@ -9,8 +9,8 @@ In this project, you will use what you've learned about deep neural networks and
 
 Submission
 ---
-- [IPython Notebook]()
-- [Project writeup]()
+- [IPython Notebook](Traffic_Sign_Classifier.ipynb)
+- [Project writeup](writeup.md)
 
 You might need to follow instructions on [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit) before running the notebook.
 
